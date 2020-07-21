@@ -1,0 +1,32 @@
+#include <stdio.h>
+void main()
+{
+    int size, key, i, j, sum;
+    scanf("%d", &size);
+    scanf("%d", &key);
+    
+    int ms[size];
+    for(i = 0; i < size; i++)
+        scanf("%d", &ms[i]);
+    
+    for (i = 0; i < size; i++) {
+        sum=0;
+        if( ms[i] >= 0 ){
+            for(j=1 ;j<=key ;j++ )
+              sum=sum+ms[(i+j)%size];
+        }
+        else{
+            for(j=1 ;j<=key ;j++ ){
+                if((i-j)>=0)
+                	sum=sum+ms[(i-j)%size];
+                else
+                	sum=sum+ms[(size + i - j) % size];
+            }
+        }
+        printf("%d  ", sum);
+    }
+}
+/*
+4 3 
+4 2 -5 10
+*/
